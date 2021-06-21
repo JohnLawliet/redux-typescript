@@ -5,7 +5,7 @@ import animeServices from '../../services/animeServices'
 import { GetAnimePage } from '../../services/animeServices/__generated__/GetAnimePage'
 import { setAnimePage } from './homePageSlice'
 import {HomeContainer} from './index.styles'
-import HotAnime from './hotAnime'
+import HotAnime from '../../components/hotAnime'
 
 interface IHomePageProps {}
 

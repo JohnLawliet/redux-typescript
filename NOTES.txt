@@ -1,3 +1,20 @@
-in package.json
-    -   "schema.download" : "npx apollo service:download --endpoint=https://anilist.co/graphql ./src/app/graphql/graphql-schema.json"
-    -   replace the npx with apollo cli to download if deploying the app to somewhere
+for development phase:
+    -   "npx apollo service:download --endpoint=https://anilist.co/graphql ./src/app/graphql/graphql-schema.json"
+        -   the above command downloads the graphql in a .json file for local usage. The app doesn't need to send requests everytime to the actual
+            graphql server
+    -   "npx apollo codegen:generate --localSchemaFile=./src/app/graphql/graphql-schema.json --target=typescript --tagName=gql --watch"
+        -   this command generates types of the graphql schema. tagName --watch says to run the command whenever the queries are called, and re-generate
+            the types folder
+
+things to remember for scalability:
+-   all queries, mutations should be kept in a separate file called services as that is what it is 
+-   a file that has a class which contains all methods to run each query/mutation and return the result whenever needed
+-   all pages should contain their own main index.js, slice (if any), type file, and styles file
+-   all actions can be grouped together like:
+        const actionDispatch = (dispatch: Dispatch) => ({
+            setAnimePage: (page: GetAnimePage["Page"]) => dispatch(setAnimePage(page))
+        })
+        const {setAnimePage} = actionDispatch(useAppDispatch())
+
+        -   actionDispatch contains list of all actions that are used in the file
+
