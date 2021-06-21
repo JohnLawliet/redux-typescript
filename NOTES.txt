@@ -1,0 +1,3 @@
+in package.json
+    -   "schema.download" : "npx apollo service:download --endpoint=https://anilist.co/graphql ./src/app/graphql/graphql-schema.json"
+    -   replace the npx with apollo cli to download if deploying the app to somewhere

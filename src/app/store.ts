@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import homePageReducer from './pages/homepage/homePageSlice';
+import ReduxLogger from 'redux-logger'
 
 export const store = configureStore({
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(ReduxLogger),
   reducer: {
-    counter: counterReducer,
+    homePage: homePageReducer,
   },
 });
 
